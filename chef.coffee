@@ -7,7 +7,7 @@ module.exports = (robot) ->
     @exec = require('child_process').exec
 
     @server = msg.match[1]
-    @command = "knife ssh -x devel -i ~/.ssh/aws '#{@server}' 'uptime'"
+    @command = "knife ssh '#{@server}' 'uptime'"
     
     msg.send "Checking #{@server} for uptime ..."
 
