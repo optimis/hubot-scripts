@@ -12,7 +12,7 @@ module.exports = (robot) ->
     environment = msg.match[2]
     user = msg.message.user
     command = "knife maintain --application #{application} --environment #{environment}"
-    authorized = (environment != 'Production' or [ 495388, 496930, 668118, 729494 ].indexOf(user.id) >= 0)
+    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494 ].indexOf(user.id) >= 0)
 
     # Chad Nicely - 495388
     # Umang Chouhan - 496930
@@ -37,7 +37,7 @@ module.exports = (robot) ->
     environment = msg.match[2]
     user = msg.message.user
     command = "knife restore --application #{application} --environment #{environment}"
-    authorized = (environment != 'Production' or [ 495388, 496930, 668118, 729494 ].indexOf(user.id) >= 0)
+    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494 ].indexOf(user.id) >= 0)
 
     # Chad Nicely - 495388
     # Umang Chouhan - 496930
@@ -58,11 +58,11 @@ module.exports = (robot) ->
   robot.hear /deploy (.*) to (.*)$/i, (msg) ->
     @exec = require('child_process').exec
 
-    application = msg.match[1]
-    environment = msg.match[2]
+    application = msg.match[1].toLowerCase()
+    environment = msg.match[2].toUpperCase()
     user = msg.message.user
     command = "knife deploy --application #{application} --environment #{environment}"
-    authorized = (environment != 'production' or [ 495388, 496930, 668118, 729494 ].indexOf(user.id) >= 0)
+    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494 ].indexOf(user.id) >= 0)
 
     # Chad Nicely - 495388
     # Umang Chouhan - 496930
