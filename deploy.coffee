@@ -5,7 +5,7 @@
 # deploy <application> to <environment> - Deploys <application> to <environment>.
 
 module.exports = (robot) ->
-  robot.hear /maintain (.*) on (.*)$/i, (msg) ->
+  robot.respond /maintain (.*) on (.*)$/i, (msg) ->
     @exec = require('child_process').exec
 
     application = msg.match[1]
@@ -30,7 +30,7 @@ module.exports = (robot) ->
     else
       msg.send "#{user.name} is not authorized to deploy to #{environment}."
 
-  robot.hear /restore (.*) on (.*)$/i, (msg) ->
+  robot.respond /restore (.*) on (.*)$/i, (msg) ->
     @exec = require('child_process').exec
 
     application = msg.match[1]
@@ -55,7 +55,7 @@ module.exports = (robot) ->
     else
       msg.send "#{user.name} is not authorized to deploy to #{environment}."
 
-  robot.hear /deploy (.*) to (.*)$/i, (msg) ->
+  robot.respond /deploy (.*) to (.*)$/i, (msg) ->
     @exec = require('child_process').exec
 
     application = msg.match[1].toLowerCase()
