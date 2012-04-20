@@ -20,7 +20,8 @@ module.exports = (robot) ->
     "gelsons",
     "cathay palisades",
     "subway",
-    "rocco's"
+    "rocco's",
+    "marix tex mex"
   ]
 
   robot.respond /lunch/i, (msg) ->
