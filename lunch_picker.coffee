@@ -1,5 +1,5 @@
 #
-# I pick a place for lunch for you, lazy basters.
+# I pick a place for lunch for you, lazy bastards.
 #
 
 module.exports = (robot) ->
@@ -25,4 +25,4 @@ module.exports = (robot) ->
   ]
 
   robot.respond /lunch/i, (msg) ->
-    msg.reply "here you go: #{msg.random restaurants}"
+    msg.reply "here you go: #{msg.random(restaurants)}"
