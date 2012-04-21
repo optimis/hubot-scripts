@@ -9,6 +9,6 @@ module.exports = (robot) ->
 
     msg.send 'Upgrading ...'
     @exec command, (error, stdout, stderr) ->
-      msg.send error
-      msg.send stdout
-      msg.send stderr
+      msg.send error if error
+      msg.send stdout if stdout
+      msg.send stderr if stderr
