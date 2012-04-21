@@ -13,3 +13,6 @@ module.exports = (robot) ->
 
   robot.hear /(megatron)/i, (msg) ->
     msg.reply 'Hey! What is megatron?'
+
+  robot.hear /(bootstrap)/i, (msg) ->
+    msg.reply 'Hey! What is bootstrap?'
