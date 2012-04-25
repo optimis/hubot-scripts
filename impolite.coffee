@@ -4,15 +4,20 @@
 
 module.exports = (robot) ->
 
-  responses = [
-    'WTF!'
+  wtf_responses = [
+    'WTF!',
+    'GTFO!',
+    'STFU!',
+    "That's your problem, bro.",
+    'Now, now...',
+    'Simmah down now.'
   ]
 
-  robot.respond /(wtf)/i, (msg) ->
-    msg.reply msg.random responses
+  robot.respond /(wtf|gtfo|stfu)/i, (msg) ->
+    msg.reply msg.random wtf_responses
 
   robot.hear /(megatron)/i, (msg) ->
-    msg.reply 'Hey! What is megatron?'
+    msg.reply 'Hey! What is this "megatron"?'
 
   robot.hear /(bootstrap)/i, (msg) ->
-    msg.reply 'Hey! What is bootstrap?'
+    msg.reply 'Hey! What is this "bootstrap"?'
