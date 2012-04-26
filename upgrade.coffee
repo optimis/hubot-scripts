@@ -20,3 +20,5 @@ module.exports = (robot) ->
       msg.send error if error
       msg.send stdout if stdout
       msg.send stderr if stderr
+
+robot.send "I'm completely operational and all my circuits are functioning normally--"
