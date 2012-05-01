@@ -3,7 +3,7 @@
 # deploy <application>:<environment> - Deploys 'application' to the 'environment'.
 
 module.exports = (robot) ->
-  robot.hear /\[([\w .-]+)\/develop\]/i, (msg) ->
+  robot.hear /\[(.*)\/develop\](.*)/i, (msg) ->
     @exec = require('child_process').exec
 
     @application = msg.match[1]
