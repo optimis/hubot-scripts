@@ -7,7 +7,7 @@ module.exports = (robot) ->
     @exec = require('child_process').exec
 
     @application = msg.match[1]
-    @target = 'rc'
+    @target = 'megatron'
     @command = @application + ':' + @target
     
     msg.send 'Deploying ' + @application + ' to ' + @target
