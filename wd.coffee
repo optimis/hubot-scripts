@@ -29,7 +29,7 @@ module.exports = (robot) ->
     else
       msg.send 'Deploying ' + @application + ' to ' + @target
 
-      @exec 'cd ' + process.env.HUBOT_WD_PATH + ' && wd deploy --to=' + @command, (error, stdout, stderr) ->
+      @exec 'cd ' + process.env.HUBOT_WD_PATH + ' && wd deploy -d --to=' + @command, (error, stdout, stderr) ->
         msg.send 'Standard Output: ' + stdout
         msg.send 'Standard Error: ' + stderr
         msg.send 'Error: ' + error if error != null
