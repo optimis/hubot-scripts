@@ -12,6 +12,10 @@ module.exports = (robot) ->
     imageMe msg, "ROFL", (url) ->
       msg.send url
 
+  robot.hear /(meh)/i, (msg) ->
+    imageMe msg, 'meh cat', (url) ->
+      msg.send url
+
 imageMe = (msg, query, cb) ->
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
     .query(v: "1.0", rsz: '8', q: query, safe: 'active')
