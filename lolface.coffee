@@ -23,7 +23,7 @@ module.exports = (robot) ->
 pages = [1,2,3,4,5,6,7,8]
 
 imageMe = (msg, query, cb) ->
-  page = masg.random pages
+  page = msg.random pages
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
     .query(v: "1.0", start: page, rsz: '8', q: query, safe: 'active')
     .get() (err, res, body) ->
