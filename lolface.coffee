@@ -17,7 +17,7 @@ module.exports = (robot) ->
       msg.send url
 
   robot.hear /(ohai)/i, (msg) ->
-    imageMe msg, 'ohai', (url) ->
+    imageMe msg, 'ohai cat', (url) ->
       msg.send url
 
 imageMe = (msg, query, cb) ->
