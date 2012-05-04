@@ -4,19 +4,20 @@
 
 module.exports = (robot) ->
   robot.hear /uptime (.*)$/i, (msg) ->
-    @exec = require('child_process').exec
+    spawn = require('child_process').spawn
 
-    @server = msg.match[1]
-    @command = "knife ssh '#{@server}' 'uptime'"
-    
-    msg.send "Checking #{@server} for uptime ..."
+    server = msg.match[1]
+    command = "knife ssh '#{server}' 'uptime'"
 
-    @exec @command, (error, stdout, stderr) ->
-      msg.send 'Standard Output'
-      msg.send "#{stdout}"
-      msg.send 'Standard Error'
-      msg.send "#{stderr}"
+    msg.send "Checking #{server} for uptime ..."
 
-      if error != null
-        msg.send 'Error'
-        msg.send "#{error}"
+    process = spawn command
+
+    process.stdout.on 'data', (data) ->
+      msg.send data
+
+    process.stderr.on 'data', (data) ->
+      msg.send data
+
+    process.on 'exit', (code) ->
+      msg.send code
