@@ -12,9 +12,20 @@ module.exports = (robot) ->
     imageMe msg, "ROFL", (url) ->
       msg.send url
 
+  robot.hear /(meh)/i, (msg) ->
+    imageMe msg, 'meh cat', (url) ->
+      msg.send url
+
+  robot.hear /(ohai)/i, (msg) ->
+    imageMe msg, 'ohai cat', (url) ->
+      msg.send url
+
+pages = [1,2,3,4,5,6,7,8]
+
 imageMe = (msg, query, cb) ->
+  page = msg.random pages
   msg.http('http://ajax.googleapis.com/ajax/services/search/images')
-    .query(v: "1.0", rsz: '8', q: query, safe: 'active')
+    .query(v: "1.0", start: page, rsz: '8', q: query, safe: 'active')
     .get() (err, res, body) ->
       images = JSON.parse(body)
       images = images.responseData.results
