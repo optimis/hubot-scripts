@@ -13,11 +13,11 @@ module.exports = (robot) ->
       msg.send url
 
   robot.hear /(meh)/i, (msg) ->
-    imageMe msg, 'meh cat', (url) ->
+    imageMe msg, 'meh lolcat', (url) ->
       msg.send url
 
   robot.hear /(ohai)/i, (msg) ->
-    imageMe msg, 'ohai cat', (url) ->
+    imageMe msg, 'ohai lolcat', (url) ->
       msg.send url
 
 pages = [1,2,3,4,5,6,7,8]
