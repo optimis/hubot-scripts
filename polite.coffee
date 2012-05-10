@@ -42,7 +42,7 @@ module.exports = (robot) ->
     'bye'
   ]
 
-  robot.respond /(thanks|thank you|cheers|nice one)/i, (msg) ->
+  robot.respond /(thanks|thank you|cheers|nice one|nice)/i, (msg) ->
     msg.reply msg.random responses
 
   robot.respond /(ty|thx|tnx)/i, (msg) ->
