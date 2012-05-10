@@ -19,6 +19,11 @@ module.exports = (robot) ->
     'np',
   ]
 
+  braggingResponses = [
+    'Oh, you know how I do.',
+    "That's just how I roll."
+  ]
+
   introductions = [
     'Hi!',
     'Hi there!',
@@ -42,8 +47,11 @@ module.exports = (robot) ->
     'bye'
   ]
 
-  robot.respond /(thanks|thank you|cheers|nice|nice one)/i, (msg) ->
+  robot.respond /(thanks|thank you|cheers)/i, (msg) ->
     msg.reply msg.random responses
+
+  robot.respond /(nice|nice one)/i, (msg) ->
+    msg.reply msg.random braggingResponses
 
   robot.respond /(ty|thx|tnx)/i, (msg) ->
     msg.reply msg.random shortResponses
