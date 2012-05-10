@@ -3,7 +3,7 @@
 # upgrade|reboot|restart|power up|level up.
 
 module.exports = (robot) ->
-  robot.respond /(upgrade|reboot|restart|power up|level up)$/i, (msg) ->
+  robot.respond /(upgrade|reboot|restart|power up|level up|learn)$/i, (msg) ->
     @exec = require('child_process').exec
     command = 'cd /var/www/hubot && git pull && npm install && forever restart 0'
 
