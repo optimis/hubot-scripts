@@ -21,7 +21,8 @@ module.exports = (robot) ->
 
   braggingResponses = [
     'Oh, you know how I do.',
-    "That's just how I roll."
+    "That's just how I roll.",
+    "Imagine if I were human..."
   ]
 
   introductions = [
