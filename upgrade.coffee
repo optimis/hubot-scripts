@@ -1,6 +1,6 @@
 # Allows hubot to upgrade himself and reload scripts.
 #
-# upgrade|reboot|restart|power up|level up.
+# upgrade|reboot|restart|power up|level up|learn.
 
 module.exports = (robot) ->
   robot.respond /(upgrade|reboot|restart|power up|level up|learn)$/i, (msg) ->
