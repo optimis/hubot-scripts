@@ -7,6 +7,7 @@ Util = require "util"
 module.exports = (robot) ->
 
   robot.respond /(boss)( me)? (.*)|(.*)/i, (msg) ->
+    msg.send Util.inspect(msg, false, 4)
     officeSpaceMemeMe msg, (url) ->
       output = Util.inspect(url, false, 4)
       msg.send output
