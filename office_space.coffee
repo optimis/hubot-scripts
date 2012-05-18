@@ -8,7 +8,9 @@ module.exports = (robot) ->
 
   robot.respond /(boss)( me)? (.*)/i, (msg) ->
     msg.send Util.inspect(msg, false, 4)
-    officeSpaceMemeMe msg, (res) ->
+    officeSpaceMemeMe msg, (res, body) ->
+      output = Util.inspect(body, false, 4)
+      msg.send output
       output = Util.inspect(res, false, 4)
       msg.send output
 
@@ -17,4 +19,4 @@ officeSpaceMemeMe = (msg, cb) ->
     .header('Content-Length', 0)
     .query(caption1: 'Yeah....', caption2: 'ummm...', refURL: 'http://www.troll.me/meme/office-space-boss/', catid: '8790', gerateMEME: 'Caption')
     .post() (err, res, body) ->
-      cb res
+      cb res, body
