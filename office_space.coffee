@@ -16,7 +16,7 @@ module.exports = (robot) ->
       output = Util.inspect(body, false, 4)
       msg.send output
 
-officeSpaceMemeMe = (msg, query, cb) ->
+officeSpaceMemeMe = (msg, cb) ->
   msg.http('http://www.troll.me/generate-meme')
     .query(caption1: 'Yeah....', caption2: 'ummm...', refURL: 'http://www.troll.me/meme/office-space-boss/', catid: '8790', gerateMEME: 'Caption')
     .post() (err, res, body) ->
