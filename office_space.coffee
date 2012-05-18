@@ -13,7 +13,7 @@ module.exports = (robot) ->
       msg.send output
 
 officeSpaceMemeMe = (msg, query, cb) ->
-  msg.http('http://ajax.googleapis.com/ajax/services/search/images')
+  msg.http('http://www.troll.me/generate-meme')
     .query(caption1: msg[3], caption2: msg[4], refURL: 'http://www.troll.me/meme/office-space-boss/', q: query, safe: 'active')
     .get() (err, res, body) ->
       cb res
