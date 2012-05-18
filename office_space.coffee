@@ -14,7 +14,7 @@ module.exports = (robot) ->
 
 officeSpaceMemeMe = (msg, cb) ->
   msg.http('http://www.troll.me/generate-meme')
-    .header('content-length', '139')
+    .header('Content-Length', 0)
     .query(caption1: 'Yeah....', caption2: 'ummm...', refURL: 'http://www.troll.me/meme/office-space-boss/', catid: '8790', gerateMEME: 'Caption')
     .post() (err, res, body) ->
       cb res
