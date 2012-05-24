@@ -8,7 +8,6 @@ module.exports = (robot) ->
     "Sasabune",
     "Kay & Dave's",
     "Cafe Vida",
-    "Mogan's Cafe",
     "Casa Nostra",
     "Taj Palace",
     "Beech Street",
