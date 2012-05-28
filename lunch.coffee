@@ -27,9 +27,9 @@ module.exports = (robot) ->
     'How about',
     'What about',
     'I think you might like',
-    'You should try'
+    'You should try',
     'Umm...'
   ]
 
-  robot.respond /(.*)lunch(.*)/i, (msg) ->
+  robot.respond /(.*)launch(?! tw| tp| taiwan| taipei)(.*)/i, (msg) ->
     msg.reply msg.random(preamble) + ' ' + msg.random(restaurants)
