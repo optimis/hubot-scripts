@@ -31,5 +31,5 @@ module.exports = (robot) ->
     'Umm...'
   ]
 
-  robot.respond /(.*)launch(?! tw| tp| taiwan| taipei)(.*)/i, (msg) ->
+  robot.respond /(.*)lunch(?! tw| tp| taiwan| taipei)(.*)/i, (msg) ->
     msg.reply msg.random(preamble) + ' ' + msg.random(restaurants)

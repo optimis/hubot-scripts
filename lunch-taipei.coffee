@@ -18,5 +18,5 @@ module.exports = (robot) ->
     "I saw a gorgeous girl there while I'm leaving "
   ]
 
-  robot.respond /(.*)launch(?= tw| tp| taiwan| taipei)(.*)/i, (msg) ->
+  robot.respond /(.*)lunch(?= tw| tp| taiwan| taipei)(.*)/i, (msg) ->
     msg.reply msg.random(preamble) + ' ' + msg.random(restaurants)
