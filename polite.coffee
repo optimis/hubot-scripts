@@ -57,7 +57,7 @@ module.exports = (robot) ->
   robot.respond /(ty|thx|tnx)/i, (msg) ->
     msg.reply msg.random shortResponses
 
-  robot.respond /(what'?s up\??|wassup|whassup|hello|hey|hi|sup|howdy|yo|good (morning|evening|afternoon))/i, (msg) ->
+  robot.respond /(what'?s up\??|wassup|whassup|hello|hey|hi|sup|howdy|good (morning|evening|afternoon))/i, (msg) ->
     msg.reply msg.random introductions
 
   robot.respond /(goodbye|see (ya|you)|peace)/i, (msg) ->
