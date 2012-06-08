@@ -6,7 +6,7 @@ module.exports = (robot) ->
   robot.hear /\[optimis\/develop\].*/i, (msg) ->
     @exec = require('child_process').exec
 
-    @application = msg.match[1]
+    @application = 'optimis'
     @target = 'megatron'
     @command = @application + ':' + @target
 
