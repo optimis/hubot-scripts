@@ -8,7 +8,6 @@ module.exports = (robot) ->
     'WTF!',
     'GTFO!',
     'STFU!',
-    "That's your problem, bro.",
     'Now, now...',
     'Simmah down now.'
   ]
