@@ -10,12 +10,15 @@ module.exports = (robot) ->
     @target = 'megatron'
     @command = @application + ':' + @target
 
-    msg.send 'Deploying ' + @application + ' to ' + @target
+    unless robot.brain.deploying
+      msg.send 'Deploying ' + @application + ' to ' + @target
 
-    @exec 'cd ' + process.env.HUBOT_WD_PATH + ' && wd deploy --to=' + @command, (error, stdout, stderr) ->
-      msg.send 'Standard Output: ' + stdout
-      msg.send 'Standard Error: ' + stderr
-      msg.send 'Error: ' + error if error != null
+      robot.brain.data.deploying = true
+      @exec 'cd ' + process.env.HUBOT_WD_PATH + ' && wd deploy --to=' + @command, (error, stdout, stderr) ->
+        msg.send 'Standard Output: ' + stdout
+        msg.send 'Standard Error: ' + stderr
+        msg.send 'Error: ' + error if error != null
+        robot.brain.data.deploying = false
 
   robot.hear /deploy ([\w .-]+):([\w .-]+)$/i, (msg) ->
     @exec = require('child_process').exec
