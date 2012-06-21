@@ -2,9 +2,8 @@
 
 module.exports = (robot) ->
   robot.respond /status (.*)/i, (msg) ->
-    msg.send "STATUS"
     user = msg.message.user
-    away_message = match[1].trim()
+    away_message = msg.match[1].trim()
     robot.brain.data.users[user.id].away_message = away_message
     msg.send "OK, your status is #{away_message}"
 
