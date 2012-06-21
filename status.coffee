@@ -8,7 +8,7 @@ module.exports = (robot) ->
     robot.brain.data.users[user.id].away_message = away_message
     msg.send "OK, your status is #{away_message}"
 
-  robot.respond /I('?)m back/i, (msg) ->
+  robot.hear /I('?)m back/i, (msg) ->
     user = msg.message.user
     robot.brain.data.users[user.id].away_message = null
     msg.send "Welcome back!"
