@@ -1,7 +1,8 @@
 # Allows hubot to track user statuses with away messages.
 
 module.exports = (robot) ->
-  robot.respond /status\:(.*)$/i, (msg) ->
+  robot.hear /status\:(.*)$/i, (msg) ->
+    msg.send msg
     user = msg.message.user
     away_message = match[1].trim()
     robot.brain.data.users[user.id].away_message = away_message
