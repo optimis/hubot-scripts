@@ -1,7 +1,8 @@
 # Allows hubot to track user statuses with away messages.
-
+#
 # ob status <message> - sets your status message
 # I'm back - clears your status message
+
 module.exports = (robot) ->
   robot.respond /status (.*)/i, (msg) ->
     user = msg.message.user
