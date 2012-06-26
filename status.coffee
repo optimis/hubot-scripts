@@ -8,12 +8,12 @@ module.exports = (robot) ->
     user = msg.message.user
     away_message = msg.match[1].trim()
     robot.brain.data.users[user.id].away_message = away_message
-    msg.send "OK, your status is #{away_message}"
+    msg.send "OK, #{user.name}, your status is #{away_message}"
 
   robot.hear /I('?)m back/i, (msg) ->
     user = msg.message.user
     robot.brain.data.users[user.id].away_message = null
-    msg.send "Welcome back!"
+    msg.send "Welcome back! I have cleared your away message."
 
   robot.hear /(.*)\:(.*)/i, (msg) ->
     name = msg.match[1]
