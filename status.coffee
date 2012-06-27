@@ -9,6 +9,13 @@ module.exports = (robot) ->
     away_message = msg.match[1].trim()
     robot.brain.data.users[user.id].away_message = away_message
     msg.reply "OK, your status is #{away_message}"
+    msg.reply "'ob: status <your message>' is deprecated. Please use '/status <your message>' instead.  Thanks!"
+
+  robot.hear /\/status (.*)/i, (msg) ->
+    user = msg.message.user
+    away_message = msg.match[1].trim()
+    robot.brain.data.users[user.id].away_message = away_message
+    msg.reply "STATUS: #{away_message}"
 
   robot.hear /I('?)m back/i, (msg) ->
     user = msg.message.user
