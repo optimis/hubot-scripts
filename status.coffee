@@ -1,7 +1,8 @@
 # Allows hubot to track user statuses with away messages.
 #
 # /status <message> - sets your status message
-# /status - clears your status message
+# /status - shows your current status message
+# /clear - clears your status message
 
 module.exports = (robot) ->
   # DEPRECATED INTERFACE
