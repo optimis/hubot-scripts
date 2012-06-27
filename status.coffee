@@ -28,7 +28,10 @@ module.exports = (robot) ->
   robot.hear /\/status$/i, (msg) ->
     user = msg.message.user
     away_message = robot.brain.data.users[user.id].away_message
-    msg.reply "Your current status is: #{away_message}"
+    if away_message is null
+      msg.reply "You do not have a status message set."
+    else
+      msg.reply "Your current status is: #{away_message}"
 
   robot.hear /\/clear$/i, (msg) ->
     user = msg.message.user
