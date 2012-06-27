@@ -1,9 +1,10 @@
 # Allows hubot to track user statuses with away messages.
 #
-# ob status <message> - sets your status message
-# I'm back - clears your status message
+# /status <message> - sets your status message
+# /status - clears your status message
 
 module.exports = (robot) ->
+  # DEPRECATED INTERFACE
   robot.respond /status (.*)/i, (msg) ->
     user = msg.message.user
     away_message = msg.match[1].trim()
@@ -11,16 +12,22 @@ module.exports = (robot) ->
     msg.reply "OK, your status is #{away_message}"
     msg.reply "'ob: status <your message>' is deprecated. Please use '/status <your message>' instead.  Thanks!"
 
+  robot.hear /I('?)m back/i, (msg) ->
+    user = msg.message.user
+    robot.brain.data.users[user.id].away_message = null
+    msg.reply "Welcome back! I have cleared your away message."
+
+  # NEW HOTNESS
   robot.hear /\/status (.*)/i, (msg) ->
     user = msg.message.user
     away_message = msg.match[1].trim()
     robot.brain.data.users[user.id].away_message = away_message
     msg.reply "STATUS: #{away_message}"
 
-  robot.hear /I('?)m back/i, (msg) ->
+  robot.hear /\/status$/i, (msg) ->
     user = msg.message.user
     robot.brain.data.users[user.id].away_message = null
-    msg.reply "Welcome back! I have cleared your away message."
+    msg.reply "Welcome back! I have cleared your status message."
 
   robot.hear /(.*)\:(.*)/i, (msg) ->
     name = msg.match[1]
