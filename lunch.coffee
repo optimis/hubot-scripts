@@ -20,7 +20,8 @@ module.exports = (robot) ->
     "Cathay Palisades",
     "Subway",
     "Rocco's",
-    "Marix Tex Mex"
+    "Marix Tex Mex",
+    "Pinochio"
   ]
 
   preamble = [
