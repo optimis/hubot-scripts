@@ -23,4 +23,4 @@ module.exports = (robot) ->
   ]
 
   robot.hear /(.*)caremad/i, (msg) ->
-    msg.reply msg.random(images)
+    msg.send msg.random(images)
