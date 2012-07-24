@@ -19,7 +19,9 @@ module.exports = (robot) ->
     'http://24.media.tumblr.com/tumblr_m6erlmS2PD1rzupqxo1_500.png',
     'http://24.media.tumblr.com/tumblr_m693zbYuSD1rzupqxo1_500.png',
     'http://25.media.tumblr.com/tumblr_m632hjVfL91rzupqxo1_500.png',
-    'http://25.media.tumblr.com/tumblr_m632dhYnNe1rzupqxo1_500.png'
+    'http://25.media.tumblr.com/tumblr_m632dhYnNe1rzupqxo1_500.png',
+    'http://25.media.tumblr.com/tumblr_m7nieu1JIC1rzupqxo1_500.jpg',
+    'http://25.media.tumblr.com/tumblr_m7lqzhCX2v1rzupqxo1_500.jpg'
   ]
 
   robot.hear /(.*)caremad/i, (msg) ->
