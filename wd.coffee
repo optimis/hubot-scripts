@@ -4,7 +4,6 @@
 
 module.exports = (robot) ->
   robot.hear /\[optimis\/develop\]((?!\[no\ deploy\]).)*/i, (msg) ->
-    msg.send msg
     @exec = require('child_process').exec
 
     @application = 'optimis'
