@@ -3,7 +3,7 @@
 # deploy <application>:<environment> - Deploys 'application' to the 'environment'.
 
 module.exports = (robot) ->
-  robot.hear /\[optimis\/develop\]((?!\[no\ deploy\]).)*/i, (msg) ->
+  robot.hear /\[optimis\/develop\].*/i, (msg) ->
     @exec = require('child_process').exec
 
     @application = 'optimis'
