@@ -78,3 +78,17 @@ module.exports = (robot) ->
         msg.send stderr
     else
       msg.send "#{@user.name} is not authorized to deploy to #{environment}."
+
+  robot.hear /.*\'delta\.com\' fixed.*/i, (msg) ->
+    @exec = require('child_process').exec
+
+    application = 'delta'
+    environment = 'RC'
+    command = "knife deploy --application #{application} --environment #{environment}"
+
+    msg.send "Build #{application} passed. Deploying #{application} to #{environment}."
+
+    @exec command, (error, stdout, stderr) ->
+      msg.send error
+      msg.send stdout
+      msg.send stderr
