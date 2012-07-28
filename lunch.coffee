@@ -20,7 +20,8 @@ module.exports = (robot) ->
     "Cathay Palisades",
     "Subway",
     "Rocco's",
-    "Marix Tex Mex"
+    "Marix Tex Mex",
+    "Pinochio"
   ]
 
   preamble = [
@@ -31,5 +32,5 @@ module.exports = (robot) ->
     'Umm...'
   ]
 
-  robot.respond /(.*)lunch(?! tw| tp| taiwan| taipei)(.*)/i, (msg) ->
+  robot.respond /(.*)lunch me/i, (msg) ->
     msg.reply msg.random(preamble) + ' ' + msg.random(restaurants)
