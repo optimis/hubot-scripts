@@ -12,12 +12,14 @@ module.exports = (robot) ->
     environment = msg.match[2]
     user = msg.message.user
     command = "knife maintain --application #{application} --environment #{environment}"
-    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494 ].indexOf(user.id) >= 0)
+    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494, 1114035, 1114036 ].indexOf(user.id) >= 0)
 
     # Chad Nicely - 495388
     # Umang Chouhan - 496930
     # Hubert Huang - 668118
     # Chris Sun - 729494
+    # Ryan Moran - 1114035
+    # Atsuya Takagi - 1114036
 
     if authorized
       msg.send "Maintenance requested by #{user.name} for #{application} on #{environment}."
@@ -37,12 +39,14 @@ module.exports = (robot) ->
     environment = msg.match[2]
     user = msg.message.user
     command = "knife restore --application #{application} --environment #{environment}"
-    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494 ].indexOf(user.id) >= 0)
+    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494, 1114035, 1114036 ].indexOf(user.id) >= 0)
 
     # Chad Nicely - 495388
     # Umang Chouhan - 496930
     # Hubert Huang - 668118
     # Chris Sun - 729494
+    # Ryan Moran - 1114035
+    # Atsuya Takagi - 1114036
 
     if authorized
       msg.send "Restore requested by #{user.name} for #{application} on #{environment}."
@@ -62,12 +66,14 @@ module.exports = (robot) ->
     environment = msg.match[2]
     user = msg.message.user
     command = "knife deploy --application #{application} --environment #{environment}"
-    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494 ].indexOf(user.id) >= 0)
+    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494, 1114035, 1114036 ].indexOf(user.id) >= 0)
 
     # Chad Nicely - 495388
     # Umang Chouhan - 496930
     # Hubert Huang - 668118
     # Chris Sun - 729494
+    # Ryan Moran - 1114035
+    # Atsuya Takagi - 1114036
 
     if authorized
       msg.send "Deploy requested by #{user.name} for #{application} to #{environment}."
