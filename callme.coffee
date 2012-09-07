@@ -3,5 +3,5 @@
 #
 
 module.exports = (robot) ->
-  robot.hear /(.*)call me/i, (msg) ->
+  robot.hear /(.*)(call me|hangout|hang out)/i, (msg) ->
     msg.send "/play yodel" 
