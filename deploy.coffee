@@ -85,7 +85,7 @@ module.exports = (robot) ->
     else
       msg.send "#{@user.name} is not authorized to deploy to #{environment}."
 
-  robot.hear /.*\'assessment\' fixed.*/i, (msg) ->
+  robot.hear /.*\'assessment\' (fixed|passed).*/i, (msg) ->
     @exec = require('child_process').exec
 
     application = 'assessment'
@@ -99,7 +99,7 @@ module.exports = (robot) ->
       msg.send stdout
       msg.send stderr
 
-  robot.hear /.*\'delta\.com\' fixed.*/i, (msg) ->
+  robot.hear /.*\'delta\.com\' (fixed|passed).*/i, (msg) ->
     @exec = require('child_process').exec
 
     application = 'delta'
