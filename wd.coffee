@@ -4,16 +4,17 @@
 
 module.exports = (robot) ->
   robot.hear /\[optimis\/develop\].*/i, (msg) ->
-    @exec = require('child_process').exec
-
-    @application = 'optimis'
-    @target = 'megatron'
-    @command = @application + ':' + @target
-
     unless robot.brain.deploying
+      robot.brain.data.deploying = true
+
+      @exec = require('child_process').exec
+
+      @application = 'optimis'
+      @target = 'megatron'
+      @command = @application + ':' + @target
+
       msg.send 'Deploying ' + @application + ' to ' + @target
 
-      robot.brain.data.deploying = true
       @exec 'cd ' + process.env.HUBOT_WD_PATH + ' && wd deploy --to=' + @command, (error, stdout, stderr) ->
         msg.send 'Standard Output: ' + stdout
         msg.send 'Standard Error: ' + stderr
