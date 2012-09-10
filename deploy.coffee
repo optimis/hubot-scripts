@@ -112,3 +112,17 @@ module.exports = (robot) ->
       msg.send error
       msg.send stdout
       msg.send stderr
+
+  robot.hear /.*\'start\.me\' (fixed|passed).*/i, (msg) ->
+    @exec = require('child_process').exec
+
+    application = 'start'
+    environment = 'RC'
+    command = "knife deploy --application #{application} --environment #{environment}"
+
+    msg.send "Build #{application} passed. Deploying #{application} to #{environment}."
+
+    @exec command, (error, stdout, stderr) ->
+      msg.send error
+      msg.send stdout
+      msg.send stderr
