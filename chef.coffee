@@ -11,15 +11,15 @@ module.exports = (robot) ->
 
     msg.send "Checking #{server} for uptime ..."
 
-    process = spawn command
+    uptime = spawn command
 
-    process.stdout.on 'data', (data) ->
+    uptime.stdout.on 'data', (data) ->
       msg.send data
 
-    process.stderr.on 'data', (data) ->
+    uptime.stderr.on 'data', (data) ->
       msg.send data
 
-    process.on 'exit', (code) ->
+    uptime.on 'exit', (code) ->
       msg.send code
 
   robot.respond /configure (.*)$/i, (msg) ->
