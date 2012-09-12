@@ -21,3 +21,15 @@ module.exports = (robot) ->
 
     process.on 'exit', (code) ->
       msg.send code
+
+  robot.respond /configure (.*)$/i, (msg) ->
+    server = msg.match[1]
+    @exec = require('child_process').exec
+    command = "knife ssh -x ec2-user -i ~/.ssh/aws '#{server}' 'sudo chef-client'"
+
+    msg.send "Configuring #{server}."
+
+    @exec command, (error, stdout, stderr) ->
+      msg.send error
+      msg.send stdout
+      msg.send stderr
