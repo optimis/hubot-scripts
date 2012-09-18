@@ -1,7 +1,7 @@
 # Enables hubot to autodeploy applications.
 
 module.exports = (robot) ->
-  robot.hear /.*(content|assessment|delta|start) (fixed|passed).*/i, (msg) ->
+  robot.hear /.*(content|assessment|delta|start) passed.*/i, (msg) ->
     @exec = require('child_process').exec
 
     application = msg.match[1]
