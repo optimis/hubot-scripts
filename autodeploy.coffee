@@ -1,10 +1,10 @@
 # Enables hubot to autodeploy applications.
 
 module.exports = (robot) ->
-  robot.hear /.*(content|assessment|delta\.com|start\.me) (fixed|passed).*/i, (msg) ->
+  robot.hear /.*(content|assessment|delta|start) (fixed|passed).*/i, (msg) ->
     @exec = require('child_process').exec
 
-    application = msg.match[1].split('.')[0]
+    application = msg.match[1]
     environment = 'RC'
     command = "knife deploy --application #{application} --environment #{environment}"
 
