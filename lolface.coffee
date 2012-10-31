@@ -12,6 +12,10 @@ module.exports = (robot) ->
     imageMe msg, "ROFL", (url) ->
       msg.send url
 
+  robot.hear /(LMAO)/, (msg) ->
+    imageMe msg, "LMAO", (url) ->
+      msg.send url
+
   robot.hear /(meh)/i, (msg) ->
     imageMe msg, 'meh lolcat', (url) ->
       msg.send url
