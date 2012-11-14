@@ -3,23 +3,23 @@
 # deploy <application>:<environment> - Deploys 'application' to the 'environment'.
 
 module.exports = (robot) ->
-  robot.hear /\[optimis\/develop\].*/i, (msg) ->
-    unless robot.brain.deploying
-      robot.brain.data.deploying = true
+  # robot.hear /\[optimis\/develop\].*/i, (msg) ->
+  #   unless robot.brain.deploying
+  #     robot.brain.data.deploying = true
 
-      @exec = require('child_process').exec
+  #     @exec = require('child_process').exec
 
-      @application = 'optimis'
-      @target = 'megatron'
-      @command = @application + ':' + @target
+  #     @application = 'optimis'
+  #     @target = 'megatron'
+  #     @command = @application + ':' + @target
 
-      msg.send 'Deploying ' + @application + ' to ' + @target
+  #     msg.send 'Deploying ' + @application + ' to ' + @target
 
-      @exec 'cd ' + process.env.HUBOT_WD_PATH + ' && wd deploy --to=' + @command, (error, stdout, stderr) ->
-        msg.send 'Standard Output: ' + stdout
-        msg.send 'Standard Error: ' + stderr
-        msg.send 'Error: ' + error if error != null
-        robot.brain.data.deploying = false
+  #     @exec 'cd ' + process.env.HUBOT_WD_PATH + ' && wd deploy --to=' + @command, (error, stdout, stderr) ->
+  #       msg.send 'Standard Output: ' + stdout
+  #       msg.send 'Standard Error: ' + stderr
+  #       msg.send 'Error: ' + error if error != null
+  #       robot.brain.data.deploying = false
 
   robot.hear /deploy ([\w .-]+):([\w .-]+)$/i, (msg) ->
     @exec = require('child_process').exec
