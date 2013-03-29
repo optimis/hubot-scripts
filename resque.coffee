@@ -14,7 +14,7 @@
 #   joshuaflanagan
 
 module.exports = (robot) ->
-  url = process.env.RESQUE_WEB_URL || 'http://localhost:5678'
+  url = process.env.RESQUE_WEB_URL || 'http://192.168.100.33:5678'
   robot.respond /resque/i, (msg) ->
     msg.http(url + '/stats.txt')
       .get() (err, res, body) ->
