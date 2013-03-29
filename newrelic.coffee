@@ -31,14 +31,12 @@ module.exports = (robot) ->
 
     msg.http("https://rpm.newrelic.com/accounts/#{accountId}/applications/#{appId}/threshold_values.xml?api_key=#{apiKey}")
       .get() (err, res, body) ->
+        msg.send body
         if err
           msg.send "New Relic says: #{err}"
           return
 
-        robot.logger.info body
         (new Parser).parseString body, (err, json) ->
-          robot.logger.info err if err
-          robot.logger.info json if json
           threshold_values = json['threshold-values']['threshold_value'] || []
           lines = threshold_values.map (threshold_value) ->
             "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
