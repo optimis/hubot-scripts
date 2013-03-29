@@ -69,6 +69,9 @@ module.exports = (robot) ->
       .http("http://#{host}/api/nodes")
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
+        robot.logger.error "err: #{err}"
+        robot.logger.error "res: #{res}"
+        robot.logger.error "body: #{body}"
         if err
           msg.send err
         else
