@@ -7,12 +7,11 @@ module.exports = (robot) ->
     @exec = require('child_process').exec
     command = 'cd /var/www/hubot && git pull && npm install && forever restart 0'
 
-    msg.send '...'
+    msg.send 'Goodbye, cruel world...'
     @exec command, (error, stdout, stderr) ->
       msg.send error if error
       msg.send stdout if stdout
       msg.send stderr if stderr
-    msg.send '...'
 
     command = 'cd /var/www/hubot/scripts && git pull origin master && forever restart 0'
 
