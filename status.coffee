@@ -27,7 +27,7 @@ module.exports = (robot) ->
 
   robot.hear /(.*)\:(.*)/i, (msg) ->
     name = msg.match[1]
-    users = robot.usersForFuzzyName(name)
+    users = robot.brain.usersForFuzzyName(name)
     if users.length is 1
         user = users[0]
         if user.away_message
