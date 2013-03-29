@@ -37,8 +37,8 @@ module.exports = (robot) ->
 
         robot.logger.info body
         (new Parser).parseString body, (err, json) ->
-          robot.logger.info err
-          robot.logger.info json
+          robot.logger.info err if err
+          robot.logger.info json if json
           threshold_values = json['threshold-values']['threshold_value'] || []
           lines = threshold_values.map (threshold_value) ->
             "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
