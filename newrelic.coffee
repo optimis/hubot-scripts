@@ -31,6 +31,7 @@ module.exports = (robot) ->
 
     msg.http("https://rpm.newrelic.com/accounts/#{accountId}/applications/#{appId}/threshold_values.xml?api_key=#{apiKey}")
       .get() (err, res, body) ->
+        msg.send res
         msg.send body
         if err
           msg.send "New Relic says: #{err}"
