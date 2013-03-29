@@ -65,24 +65,19 @@ module.exports = (robot) ->
 
   robot.respond /rabbit nodes/i, (msg) ->
     results = []
-    try
-      msg
-        .http("http://#{host}")
-        .port("55672")
-        .path("/api/nodes")
-        .headers(Authorization: auth, Accept: 'application/json')
-        .get() (err, res, body) ->
-          if err
-            msg.send err
-          else
-            try
-              json = JSON.parse body
-              results.push "'#{node.name}' #{dhm(node.uptime)}" for node in json
-              msg.send results.join '\n'
-            catch e
-              msg.send e
-    catch e
-      msg.send e
+    msg
+      .http("http://#{host}/api/nodes")
+      .headers(Authorization: auth, Accept: 'application/json')
+      .get() (err, res, body) ->
+        if err
+          msg.send err
+        else
+          try
+            json = JSON.parse body
+            results.push "'#{node.name}' #{dhm(node.uptime)}" for node in json
+            msg.send results.join '\n'
+          catch e
+            msg.send e
 
   robot.respond /rabbit queues/i, (msg) ->
     results = []
