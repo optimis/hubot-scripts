@@ -65,8 +65,8 @@ module.exports = (robot) ->
 
   robot.respond /rabbit nodes/i, (msg) ->
     results = []
-    msg
-      try
+    try
+      msg
         .http("http://#{host}")
         .port("55672")
         .path("/api/nodes")
