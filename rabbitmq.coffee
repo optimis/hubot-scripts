@@ -81,8 +81,8 @@ module.exports = (robot) ->
               msg.send results.join '\n'
             catch e
               msg.send e
-      catch e
-        msg.send e
+    catch e
+      msg.send e
 
   robot.respond /rabbit queues/i, (msg) ->
     results = []
