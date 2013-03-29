@@ -66,7 +66,9 @@ module.exports = (robot) ->
   robot.respond /rabbit nodes/i, (msg) ->
     results = []
     msg
-      .http("http://#{host}/api/nodes")
+      .http("http://#{host}")
+      .port("55672")
+      .path("/api/nodes")
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
         if err
