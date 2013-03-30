@@ -25,6 +25,7 @@
 
 
 host = process.env.HUBOT_RABBITMQ_HOST
+port = process.env.HUBOT_RABBITMQ_PORT
 user = process.env.HUBOT_RABBITMQ_USER ?= 'guest'
 pwd = process.env.HUBOT_RABBITMQ_PWD ?= 'guest'
 virt = process.env.HUBOT_RABBITMQ_VIRT_HOST ?= '%2F'
@@ -67,7 +68,7 @@ module.exports = (robot) ->
     results = []
     msg
       .http("http://#{host}")
-      .port("55672")
+      .port(port)
       .path("/api/nodes")
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
@@ -84,7 +85,9 @@ module.exports = (robot) ->
   robot.respond /rabbit queues/i, (msg) ->
     results = []
     msg
-      .http("http://#{host}/api/queues")
+      .http("http://#{host}")
+      .port(port)
+      .path("/api/queues")
       .query(sort_reverse: 'messages')
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
@@ -105,7 +108,9 @@ module.exports = (robot) ->
   robot.respond /rabbit slow queues/i, (msg) ->
     results = []
     msg
-      .http("http://#{host}/api/queues")
+      .http("http://#{host}")
+      .port(port)
+      .path("/api/queues")
       .query(sort_reverse: 'messages')
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
@@ -128,7 +133,9 @@ module.exports = (robot) ->
     sub = msg.match[1]
     results = []
     msg
-      .http("http://#{host}/api/queues/#{virt}/#{sub}/bindings")
+      .http("http://#{host}")
+      .port(port)
+      .path("/api/queues/#{virt}/#{sub}/bindings")
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
         if err
@@ -150,7 +157,9 @@ module.exports = (robot) ->
   robot.respond /rabbit vhosts/i, (msg) ->
     results = []
     msg
-      .http("http://#{host}/api/vhosts")
+      .http("http://#{host}")
+      .port(port)
+      .path("/api/vhosts")
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
         if err
