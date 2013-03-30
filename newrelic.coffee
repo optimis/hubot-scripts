@@ -41,7 +41,7 @@ module.exports = (robot) ->
 #             "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
 #           msg.send lines.join("\n"), "https://rpm.newrelic.com/accounts/#{accountId}/applications/#{appId}"
 
-  robot.respond /newrelic me/i, (msg) ->
+  robot.respond /newrelic/i, (msg) ->
     accountId = process.env.HUBOT_NEWRELIC_ACCOUNT_ID
     appId     = process.env.HUBOT_NEWRELIC_APP_ID
     apiKey    = process.env.HUBOT_NEWRELIC_API_KEY
@@ -53,7 +53,7 @@ module.exports = (robot) ->
           msg.send "New Relic says: #{err}"
           return
 
-        msg.send "#{body}"
+        msg.send "#{res}"
         (new Parser).parseString body, (err, json) ->
 
           # account = json['accounts'][0]
