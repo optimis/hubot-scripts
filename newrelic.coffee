@@ -55,14 +55,13 @@ module.exports = (robot) ->
           return
 
         (new Parser).parseString body, (err, json) ->
-          msg.send JSON.stringify(json)
-          account = json['accounts']['account']
-          msg.send JSON.stringify(account)
-          # applications = account['applications']
-          # applications.each (application) ->
-          #   lines = []
-          #   lines.push application['name']
-          #   threshold_values = application['threshold-values']
-          #   threshold_values.each (threshold_value) ->
-          #     lines.push "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
-          #   msg.send lines.join("\n"), "https://rpm.newrelic.com/accounts/#{accountId}/applications/#{application['id']}"
+          accounts = json['accounts']['account']
+          accounts.each (account) ->
+            applications = account['applications']['application']
+            applications.each (application) ->
+              lines = []
+              lines.push application['name']
+              threshold_values = application['threshold-values']
+              threshold_values.each (threshold_value) ->
+                lines.push "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
+              msg.send lines.join("\n"), "https://rpm.newrelic.com/accounts/#{accountId}/applications/#{application['id']}"
