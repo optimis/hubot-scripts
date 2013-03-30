@@ -10,7 +10,7 @@
 #   HUBOT_NEWRELIC_API_KEY
 #
 # Commands:
-#   hubot newrelic - Returns summary application stats from New Relic
+#   hubot newrelic <appname> - Returns summary application stats from New Relic
 #
 # Notes:
 #   How to find these settings:
