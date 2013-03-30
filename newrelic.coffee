@@ -57,9 +57,9 @@ module.exports = (robot) ->
         (new Parser).parseString body, (err, json) ->
           accounts = json['accounts']['account']
           accounts.forEach (account) ->
-            msg.send JSON.stringify(account['applications']['application'])
-            # applications = account['applications']['application']
-            # applications.forEach (application) ->
+            applications = account['applications']['application'])
+            applications.forEach (application) ->
+              msg.send JSON.stringify(application)
             #   lines = []
             #   lines.push application['name']
             #   threshold_values = application['threshold-values']
