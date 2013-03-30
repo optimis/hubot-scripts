@@ -53,7 +53,7 @@ module.exports = (robot) ->
           msg.send "New Relic says: #{err}"
           return
 
-        msg.send "#{res}"
+        msg.send JSON.stringify(res)
         (new Parser).parseString body, (err, json) ->
 
           # account = json['accounts'][0]
