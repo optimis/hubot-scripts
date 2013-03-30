@@ -60,10 +60,10 @@ module.exports = (robot) ->
             applications = account['applications'][0]['application']
             applications.forEach (application) ->
               lines = []
-              name = application['name']
-              lines.push name
+              appName = application['name']
+              lines.push appName
               threshold_values = application['threshold-values'][0]['threshold_value']
               threshold_values.forEach (threshold_value) ->
                 lines.push "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
               lines.push "https://rpm.newrelic.com/accounts/#{accountId}/applications/#{application['id'][0]['_']}"
-              msg.send lines.join("\n") if match.toLowerCase() == name.toLowerCase() || match.toLowerCase() == 'all'
+              msg.send lines.join("\n") if match.toLowerCase() == appName.toLowerCase() || match.toLowerCase() == 'all'
