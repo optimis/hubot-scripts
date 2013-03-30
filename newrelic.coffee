@@ -56,12 +56,12 @@ module.exports = (robot) ->
 
         (new Parser).parseString body, (err, json) ->
           accounts = json['accounts']['account']
-          accounts.each (account) ->
+          accounts.forEach (account) ->
             applications = account['applications']['application']
-            applications.each (application) ->
+            applications.forEach (application) ->
               lines = []
               lines.push application['name']
               threshold_values = application['threshold-values']
-              threshold_values.each (threshold_value) ->
+              threshold_values.forEach (threshold_value) ->
                 lines.push "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
               msg.send lines.join("\n"), "https://rpm.newrelic.com/accounts/#{accountId}/applications/#{application['id']}"
