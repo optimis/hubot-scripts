@@ -57,7 +57,7 @@ module.exports = (robot) ->
         (new Parser).parseString body, (err, json) ->
           accounts = json['accounts']['account']
           accounts.forEach (account) ->
-            msg.send JSON.stringify(account)
+            msg.send JSON.stringify(account['applications'])
             # applications = account['applications']['application']
             # applications.forEach (application) ->
             #   lines = []
