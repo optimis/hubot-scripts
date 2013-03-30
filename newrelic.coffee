@@ -60,9 +60,9 @@ module.exports = (robot) ->
             applications = account['applications'][0]['application']
             applications.forEach (application) ->
               msg.send JSON.stringify(application)
-            #   lines = []
-            #   lines.push application['name']
-            #   threshold_values = application['threshold-values']
-            #   threshold_values.forEach (threshold_value) ->
-            #     lines.push "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
-            #   msg.send lines.join("\n"), "https://rpm.newrelic.com/accounts/#{accountId}/applications/#{application['id']}"
+              lines = []
+              lines.push application['name']
+              # threshold_values = application['threshold-values']
+              # threshold_values.forEach (threshold_value) ->
+              #   lines.push "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
+              msg.send lines.join("\n"), "https://rpm.newrelic.com/accounts/#{accountId}/applications/#{application['id'][0]['_']}"
