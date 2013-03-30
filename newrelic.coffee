@@ -23,7 +23,7 @@
 #   briandoll
 
 module.exports = (robot) ->
-  robot.respond /newrelic/i, (msg) ->
+  robot.respond /newrelic me/i, (msg) ->
     accountId = process.env.HUBOT_NEWRELIC_ACCOUNT_ID
     appId     = process.env.HUBOT_NEWRELIC_APP_ID
     apiKey    = process.env.HUBOT_NEWRELIC_API_KEY
