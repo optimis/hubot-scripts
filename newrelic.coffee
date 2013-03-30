@@ -60,7 +60,7 @@ module.exports = (robot) ->
             applications = account['applications'][0]['application']
             applications.forEach (application) ->
               lines = []
-              appName = application['name']
+              appName = application['name'][0]
               lines.push appName
               threshold_values = application['threshold-values'][0]['threshold_value']
               threshold_values.forEach (threshold_value) ->
