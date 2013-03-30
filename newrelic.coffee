@@ -22,7 +22,7 @@
 # Author:
 #   briandoll
 
-# module.exports = (robot) ->
+module.exports = (robot) ->
 #   robot.respond /newrelic me/i, (msg) ->
 #     accountId = process.env.HUBOT_NEWRELIC_ACCOUNT_ID
 #     appId     = process.env.HUBOT_NEWRELIC_APP_ID
