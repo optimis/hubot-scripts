@@ -10,7 +10,7 @@
 #   HUBOT_NEWRELIC_API_KEY
 #
 # Commands:
-#   hubot newrelic me - Returns summary application stats from New Relic
+#   hubot newrelic - Returns summary application stats from New Relic
 #
 # Notes:
 #   How to find these settings:
@@ -57,11 +57,12 @@ module.exports = (robot) ->
         (new Parser).parseString body, (err, json) ->
           accounts = json['accounts']['account']
           accounts.forEach (account) ->
-            applications = account['applications']['application']
-            applications.forEach (application) ->
-              lines = []
-              lines.push application['name']
-              threshold_values = application['threshold-values']
-              threshold_values.forEach (threshold_value) ->
-                lines.push "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
-              msg.send lines.join("\n"), "https://rpm.newrelic.com/accounts/#{accountId}/applications/#{application['id']}"
+            msg.send JSON.stringify(account)
+            # applications = account['applications']['application']
+            # applications.forEach (application) ->
+            #   lines = []
+            #   lines.push application['name']
+            #   threshold_values = application['threshold-values']
+            #   threshold_values.forEach (threshold_value) ->
+            #     lines.push "#{threshold_value['$']['name']}: #{threshold_value['$']['formatted_metric_value']}"
+            #   msg.send lines.join("\n"), "https://rpm.newrelic.com/accounts/#{accountId}/applications/#{application['id']}"
