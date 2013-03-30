@@ -46,6 +46,7 @@ module.exports = (robot) ->
     appId     = process.env.HUBOT_NEWRELIC_APP_ID
     apiKey    = process.env.HUBOT_NEWRELIC_API_KEY
     Parser = require("xml2js").Parser
+    msg.send apiKey
 
     msg.http("https://api.newrelic.com/accounts.xml?include=application_health&api_key=#{apiKey}")
       .get() (err, res, body) ->
@@ -54,6 +55,7 @@ module.exports = (robot) ->
           return
 
         (new Parser).parseString body, (err, json) ->
+          msg.send JSON.stringify(json)
           account = json['accounts'][0]
           msg.send account
           applications = account['applications']
