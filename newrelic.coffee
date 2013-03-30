@@ -53,9 +53,9 @@ module.exports = (robot) ->
           msg.send "New Relic says: #{err}"
           return
 
+        msg.send "#{body}"
         (new Parser).parseString body, (err, json) ->
-          msg.send "ERROR: #{err}" if err
-          msg.send JSON.stringify(json)
+
           # account = json['accounts'][0]
           # msg.send account
           # applications = account['applications']
