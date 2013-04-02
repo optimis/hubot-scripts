@@ -33,6 +33,7 @@ parse_stats = (stats) ->
 format_stats = (stats) ->
   heading = "#{stats['resque']['pending']} pending jobs. #{stats['resque']['working']} of #{stats['resque']['workers']} workers active."
   queues = ([count,name] for name,count of stats['queues'] when count isnt '0').sort (a,b) -> b[0] - a[0]
+  queues.push([stats['resque']['failed'], 'failed'])
   justify = (str, size) ->
     Array(size - str.length + 1).join(' ') + str
   width = Math.max.apply null, (q[1].length for q in queues)
