@@ -14,7 +14,7 @@
 #   joshuaflanagan
 
 module.exports = (robot) ->
-  url = 'http://192.168.100.35/resque'
+  url = 'https://192.168.100.35/resque'
   robot.respond /duxque/i, (msg) ->
     msg.http(url + '/stats.txt')
       .get() (err, res, body) ->
