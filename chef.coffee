@@ -7,7 +7,7 @@ module.exports = (robot) ->
     spawn = require('child_process').spawn
 
     server = msg.match[1]
-    command = "knife ssh name:#{server} 'uptime'"
+    command = "knife ssh -x config name:#{server} --attribute ipaddress 'uptime'"
 
     msg.send "Checking #{server} for uptime ..."
 
