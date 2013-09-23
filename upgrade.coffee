@@ -5,7 +5,7 @@
 module.exports = (robot) ->
   robot.respond /(upgrade|reboot|restart|power up|level up|learn)$/i, (msg) ->
     @exec = require('child_process').exec
-    command = 'cd /var/www/hubot && git pull && npm install && forever restart 0'
+    command = 'cd /var/www/hubot/current && git pull && npm install && forever restart 0'
 
     @exec command, (error, stdout, stderr) ->
       msg.send error if error
