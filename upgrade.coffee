@@ -12,7 +12,7 @@ module.exports = (robot) ->
       msg.send stdout if stdout
       msg.send stderr if stderr
 
-    command = 'cd /var/www/hubot/scripts && git pull origin master && forever restart 0'
+    command = 'cd /var/www/hubot/current/scripts && git pull origin master && forever restart 0'
 
     msg.send 'Goodbye, cruel world...      Hello. My name is O.B. I know kung fu.'
     @exec command, (error, stdout, stderr) ->
