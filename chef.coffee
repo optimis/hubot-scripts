@@ -46,3 +46,15 @@ module.exports = (robot) ->
       msg.send error
       msg.send stdout
       msg.send stderr
+
+  robot.respond /configure environment (.*)$/i, (msg) ->
+    environment = msg.match[1]
+    @exec = require('child_process').exec
+    command = "knife ssh -x config --ssh-user root --no-color chef_environment:#{environment} 'sudo chef-client'"
+
+    msg.send "Configuring #{server}."
+
+    @exec command, (error, stdout, stderr) ->
+      msg.send error
+      msg.send stdout
+      msg.send stderr
