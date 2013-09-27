@@ -14,7 +14,7 @@ module.exports = (robot) ->
 
     command = 'cd /var/www/hubot/current/scripts && git pull origin master && forever restart 0'
 
-    msg.send 'Goodbye, cruel world...      Hello. My name is O.B. I know kung fu.'
+    msg.send 'Goodbye, cruel world...      Hello. My name is Bumble. B. I know kung fu.'
     @exec command, (error, stdout, stderr) ->
       msg.send error if error
       msg.send stdout if stdout
