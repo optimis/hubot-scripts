@@ -38,7 +38,7 @@ module.exports = (robot) ->
   robot.respond /configure (.*)$/i, (msg) ->
     server = msg.match[1]
     @exec = require('child_process').exec
-    command = "knife ssh -x config --ssh-user root --no-color name:#{server} 'sudo chef-client'"
+    command = "knife ssh -x config --ssh-user root --no-color --format=json name:#{server} 'sudo chef-client'"
 
     msg.send "Configuring #{server}."
 
