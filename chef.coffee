@@ -24,7 +24,7 @@ module.exports = (robot) ->
     spawn = require('child_process').spawn
 
     server = msg.match[1]
-    command = "knife ssh -x config --ssh-user root name:#{server} 'uptime'"
+    command = "knife ssh --ssh-user root name:#{server} 'uptime'"
 
     msg.send "Checking #{server} for uptime ..."
 
@@ -38,7 +38,7 @@ module.exports = (robot) ->
   robot.respond /configure (.*)$/i, (msg) ->
     server = msg.match[1]
     @exec = require('child_process').exec
-    command = "knife ssh -x config --ssh-user root --no-color name:#{server} 'sudo chef-client'"
+    command = "knife ssh --ssh-user root --attribute ipaddress --no-color name:#{server} 'sudo chef-client'"
 
     msg.send "Configuring #{server}."
 
@@ -50,7 +50,7 @@ module.exports = (robot) ->
   robot.respond /configure-environment (.*)$/i, (msg) ->
     environment = msg.match[1]
     @exec = require('child_process').exec
-    command = "knife ssh -x config --ssh-user root --no-color --attribute ipaddress chef_environment:#{environment} 'sudo chef-client'"
+    command = "knife ssh --ssh-user root --no-color --attribute ipaddress chef_environment:#{environment} 'sudo chef-client'"
 
     msg.send "Configuring #{environment}."
 
