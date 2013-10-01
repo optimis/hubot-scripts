@@ -27,3 +27,13 @@ module.exports = (robot) ->
       msg.send error
       msg.send stdout
       msg.send stderr
+
+  robot.respond /system (.*)$/i, (msg) ->
+    spawn = require('child_process').spawn
+    command = "#{msg.match[1]}"
+    msg.send "#{command} ..."
+    @exec = require('child_process').exec
+    @exec command, (error, stdout, stderr) ->
+      msg.send error
+      msg.send stdout
+      msg.send stderr
