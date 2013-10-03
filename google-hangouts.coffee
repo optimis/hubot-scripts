@@ -2,5 +2,5 @@
 module.exports = (robot) ->
 
   robot.hear /\/(hangout|standup)$/i, (msg) ->
-    link = "https://plus.google.com/hangouts/_/916872bde2bb7dfcd36c78e6e5e9229b40db3d24?authuser=1&hl=en"
-    msg.send("Optimis Hangout: " + link)
+    link = "https://plus.google.com/hangouts/_/a3a829ec57d8b589ec03674729070a9e1d4e7a0a?authuser=0&hl=en"
+    msg.send("FIXED: Optimis Hangout: " + link)
