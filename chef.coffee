@@ -20,6 +20,18 @@ module.exports = (robot) ->
       msg.send stdout
       msg.send stderr
 
+  robot.respond /knife (node|role|client) show (.*)$/i, (msg) ->
+    spawn = require('child_process').spawn
+    subcmd = msg.match[1]
+    name = msg.match[2]
+    command = "knife #{subcmd} show #{name}"
+    msg.send "Running: #{command}"
+    @exec = require('child_process').exec
+    @exec command, (error, stdout, stderr) ->
+      msg.send error
+      msg.send stdout
+      msg.send stderr
+
   robot.respond /uptime (.*)$/i, (msg) ->
     spawn = require('child_process').spawn
 
