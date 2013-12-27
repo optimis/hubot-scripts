@@ -4,6 +4,18 @@
 # restore <application> on <environment> - Restores <application> on <environment> from maintenance mode.
 # deploy <application> to <environment> - Deploys <application> to <environment>.
 
+authorized = (user, environment) ->
+  development_team = [
+    496930, # Umang Chouhan
+    # Timothy Willett
+    # Mark Hopkins
+    1159232, # Taian Su
+    1292120, # Syd Chen
+    # Mason Chang
+    1430445 # Shunwen Hsiao
+  ]
+  (environment != 'prod') or development_team.indexOf(user.id) >= 0
+
 module.exports = (robot) ->
   robot.respond /maintain (.*) on (.*)$/i, (msg) ->
     @exec = require('child_process').exec
@@ -12,17 +24,8 @@ module.exports = (robot) ->
     environment = msg.match[2]
     user = msg.message.user
     command = "knife maintain --application #{application} --environment #{environment}"
-    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494, 1114035, 1114036, 1114033 ].indexOf(user.id) >= 0)
 
-    # Chad Nicely - 495388
-    # Umang Chouhan - 496930
-    # Hubert Huang - 668118
-    # Chris Sun - 729494
-    # Ryan Moran - 1114035
-    # Atsuya Takagi - 1114036
-    # Peter Tran - 1114033
-
-    if authorized
+    if authorized(user, environment)
       msg.send "Maintenance requested by #{user.name} for #{application} on #{environment}."
 
       @exec command, (error, stdout, stderr) ->
@@ -40,17 +43,8 @@ module.exports = (robot) ->
     environment = msg.match[2]
     user = msg.message.user
     command = "knife restore --application #{application} --environment #{environment}"
-    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494, 1114035, 1114036, 1114033 ].indexOf(user.id) >= 0)
 
-    # Chad Nicely - 495388
-    # Umang Chouhan - 496930
-    # Hubert Huang - 668118
-    # Chris Sun - 729494
-    # Ryan Moran - 1114035
-    # Atsuya Takagi - 1114036
-    # Peter Tran - 1114033
-
-    if authorized
+    if authorized(user, environment)
       msg.send "Restore requested by #{user.name} for #{application} on #{environment}."
 
       @exec command, (error, stdout, stderr) ->
@@ -68,17 +62,8 @@ module.exports = (robot) ->
     environment = msg.match[2]
     user = msg.message.user
     command = "knife deploy --application #{application} --environment #{environment}"
-    authorized = (environment != 'prod' or [ 495388, 496930, 668118, 729494, 1114035, 1114036, 1114033 ].indexOf(user.id) >= 0)
 
-    # Chad Nicely - 495388
-    # Umang Chouhan - 496930
-    # Hubert Huang - 668118
-    # Chris Sun - 729494
-    # Ryan Moran - 1114035
-    # Atsuya Takagi - 1114036
-    # Peter Tran - 1114033
-
-    if authorized
+    if authorized(user, environment)
       msg.send "Deploy requested by #{user.name} for #{application} to #{environment}."
 
       @exec command, (error, stdout, stderr) ->
