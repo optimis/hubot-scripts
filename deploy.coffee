@@ -87,3 +87,7 @@ module.exports = (robot) ->
         msg.send stderr
     else
       msg.send "#{@user.name} is not authorized to deploy to #{environment}."
+
+  robot.respond /my user info/i, (msg) ->
+    user = msg.message.user
+    msg.reply "Here is your user info: #{JSON.stringify(user)}"
