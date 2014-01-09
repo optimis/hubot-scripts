@@ -21,5 +21,5 @@ module.exports = (robot) ->
               escape(location) +
               "&t=m&z=11"
 
-    msg.send mapUrl
+    #msg.send mapUrl
     #msg.send url
