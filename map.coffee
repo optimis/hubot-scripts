@@ -22,4 +22,4 @@ module.exports = (robot) ->
               "&t=m&z=11"
 
     msg.send mapUrl
-    msg.send url
+    #msg.send url
