@@ -22,9 +22,13 @@ module.exports = (robot) ->
 
 module.exports = (robot) ->
   robot.respond /ptrc_resque/i, (msg) ->
+    msg.send 'got ptrc'
     msg.http('http://172.30.42.1:5678/workers/OptimisPTRC')
       .get() (err, res, body) ->
+        html = body
         msg.send parse_workers_stats(body).toString()
+    msg.send html
+
 
 parse_workers_stats = (stats) ->
   parser = new DOMParser()
