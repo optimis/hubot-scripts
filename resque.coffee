@@ -20,6 +20,18 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         msg.send format_stats parse_stats body
 
+module.exports = (robot) ->
+  robot.respond /ptrc_resque/i, (msg) ->
+    msg.http('http://172.30.42.1:5678/workers/OptimisPTRC')
+      .get() (err, res, body) ->
+        msg.send parse_workers_stats(body).toString()
+
+parse_workers_stats = (stats) ->
+  parser = new DOMParser()
+  xmlDoc = parser.parseFromString(stats,"text/xml")
+  xmlDoc.getElementsByClassName('queue-tag')
+
+
 parse_stats = (stats) ->
   details = {}
   handle_line = (line) ->
