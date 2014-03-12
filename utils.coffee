@@ -1,4 +1,27 @@
 module.exports = (robot) ->
+  robot.respond /time$/i, (msg) ->
+    spawn = require('child_process').spawn
+    API_KEY = "g728y37tz9xdyyurnw97d8f5"
+    API_URI = "http://api.worldweatheronline.com/free/v1/tz.ashx"
+
+    offices = {
+      LA: 'LA',
+      India: 'India',
+      TW: 'Taipei',
+      PHIL: 'manila',
+      Fibernet: '84097'
+    }
+
+    for key in offices
+      msg.http(API_URI).query({
+        q: offices[key]
+        key: API_KEY
+        format: 'json'
+      }).get() (err, res, body) ->
+        result = JSON.parse(body)['data']
+        currentTime = result['time_zone'][0]['localtime'].slice 5
+        msg.send "#{key}: #{currentTime}"
+
   robot.respond /time in (.*)$/i, (msg) ->
     spawn = require('child_process').spawn
     API_KEY = "g728y37tz9xdyyurnw97d8f5"
