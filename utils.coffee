@@ -12,6 +12,8 @@ module.exports = (robot) ->
       Fibernet: '84097'
     }
 
+    times = ""
+
     for key in offices
       msg.http(API_URI).query({
         q: offices[key]
@@ -20,7 +22,9 @@ module.exports = (robot) ->
       }).get() (err, res, body) ->
         result = JSON.parse(body)['data']
         currentTime = result['time_zone'][0]['localtime'].slice 5
-        msg.send "#{key}: #{currentTime}"
+        times += "#{key}: #{currentTime}\n"
+
+    setTimeout(msg.send, 3000, times)
 
   robot.respond /time in (.*)$/i, (msg) ->
     spawn = require('child_process').spawn
