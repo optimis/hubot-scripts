@@ -12,14 +12,9 @@ module.exports = (robot) ->
       try
         result = JSON.parse(body)['data']
         city = result['request'][0]['query']
-        currentTime = new Date(result['time_zone'][0]['localtime'])
+        currentTime = result['time_zone'][0]['localtime'].slice 5
         offset = result['time_zone'][0]['utcOffset']
-        hours = currentTime.getHours()
-        mins = currentTime.getMinutes()
-        icon_hours = hours % 12
-        icon_mins = mins > 30 ? 30 : ''
-        icon = ":clock#{icon_hours}#{icon_mins}:"
-        msg.send "Current time in #{city} => #{icon} #{currentTime} (UTC #{offset})"
+        msg.send "Current time in #{city} => #{currentTime} (UTC #{offset})"
       catch error
         msg.send "Sorry, no city found. Please, check your input and try it again"
 
