@@ -2,29 +2,33 @@ module.exports = (robot) ->
   robot.respond /times$/i, (msg) ->
     spawn = require('child_process').spawn
     API_KEY = "g728y37tz9xdyyurnw97d8f5"
-    API_URI = "http://api.worldweatheronline.com/free/v1/tz.ashx"
+    API_URI = "http://api.worldweatheronline.com/free/v1/tz.ashx?format=json&key=#{API_KEY}&q="
 
     offices = {
-      LA: 'LA',
-      India: 'India',
       TW: 'Taipei',
       PHIL: 'manila',
-      Fibernet: '84097'
+      India: 'India',
+      Fibernet: '84097',
+      LA: 'LA'
     }
 
     times = ""
-
-    for key in offices
-      msg.http(API_URI).query({
-        q: offices[key]
-        key: API_KEY
-        format: 'json'
-      }).get() (err, res, body) ->
-        result = JSON.parse(body)['data']
-        currentTime = result['time_zone'][0]['localtime'].slice 5
-        times += "#{key}: #{currentTime}\n"
-
-    setTimeout(msg.send, 3000, times)
+    msg.http(API_URI+offices['TW']).get() (err, res, body) ->
+      currentTime = JSON.parse(body)['data']['time_zone'][0]['localtime'].slice 5
+      times += "TW: #{currentTime}\n"
+      msg.http(API_URI+offices['PHIL']).get() (err, res, body) ->
+        currentTime = JSON.parse(body)['data']['time_zone'][0]['localtime'].slice 5
+        times += "PHIL: #{currentTime}\n"
+        msg.http(API_URI+offices['India']).get() (err, res, body) ->
+          currentTime = JSON.parse(body)['data']['time_zone'][0]['localtime'].slice 5
+          times += "India: #{currentTime}\n"
+          msg.http(API_URI+offices['Fibernet']).get() (err, res, body) ->
+            currentTime = JSON.parse(body)['data']['time_zone'][0]['localtime'].slice 5
+            times += "Fibernet: #{currentTime}\n"
+            msg.http(API_URI+offices['LA']).get() (err, res, body) ->
+              currentTime = JSON.parse(body)['data']['time_zone'][0]['localtime'].slice 5
+              times += "LA: #{currentTime}\n"
+              msg.send times
 
   robot.respond /time in (.*)$/i, (msg) ->
     spawn = require('child_process').spawn
