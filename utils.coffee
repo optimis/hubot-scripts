@@ -1,5 +1,5 @@
 module.exports = (robot) ->
-  robot.respond /time$/i, (msg) ->
+  robot.respond /times$/i, (msg) ->
     spawn = require('child_process').spawn
     API_KEY = "g728y37tz9xdyyurnw97d8f5"
     API_URI = "http://api.worldweatheronline.com/free/v1/tz.ashx"
