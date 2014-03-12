@@ -1,4 +1,22 @@
 module.exports = (robot) ->
+  robot.respond /time in (.*)$/i, (msg) ->
+    spawn = require('child_process').spawn
+    API_KEY = "g728y37tz9xdyyurnw97d8f5"
+    API_URI = "http://api.worldweatheronline.com/free/v1/tz.ashx?format=json"
+
+    msg.http(API_URI).query({
+      q: msg.match[1]
+      key: API_KEY
+      format: 'json'
+    }).get() (err, res, body) ->
+      try
+        result = JSON.parse(body)['data']
+        city = result['request'][0]['query']
+        currentTime = result['time_zone'][0]['localtime'].slice 11
+        msg.send "Current time in #{city} ==> #{currentTime}"
+      catch error
+        msg.send "Sorry, no city found. Please, check your input and try it again"
+
   robot.respond /ping (.*)$/i, (msg) ->
     spawn = require('child_process').spawn
 
